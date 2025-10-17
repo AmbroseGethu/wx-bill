@@ -1,5 +1,5 @@
 # Note: tkinter comes built-in with Python, no need to install separately
-inflect==7.3.1
+# inflect removed - using custom number-to-words function to avoid PyInstaller issues
 tkcalendar==1.6.1
 babel==2.15.0
 pyinstaller==6.9.0

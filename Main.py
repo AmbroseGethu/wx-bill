@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import inflect
 from tkcalendar import DateEntry 
 import json
 
@@ -194,9 +193,60 @@ class BillingSoftware:
         customer_names = list(self.customer_data.keys())
         self.company_name_dropdown['values'] = customer_names
 
-    def amountToWords(self,amount):
-        p = inflect.engine()
-        return p.number_to_words(amount)
+    def amountToWords(self, amount):
+        # Simple number to words converter (replacing inflect to avoid PyInstaller issues)
+        ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+        tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+        teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+        
+        def convert_hundreds(num):
+            result = ''
+            hundreds = num // 100
+            remainder = num % 100
+            
+            if hundreds > 0:
+                result += ones[hundreds] + ' hundred '
+            
+            if remainder >= 20:
+                tens_digit = remainder // 10
+                ones_digit = remainder % 10
+                result += tens[tens_digit] + ' ' + ones[ones_digit]
+            elif remainder >= 10:
+                result += teens[remainder - 10]
+            elif remainder > 0:
+                result += ones[remainder]
+                
+            return result.strip()
+        
+        if amount == 0:
+            return 'zero'
+        
+        amount = int(amount)
+        
+        # Handle up to 9,99,99,999 (Indian numbering system)
+        if amount >= 10000000:  # Crores
+            crores = amount // 10000000
+            remainder = amount % 10000000
+            result = convert_hundreds(crores) + ' crore '
+            if remainder > 0:
+                result += self.amountToWords(remainder)
+            return result.strip()
+        elif amount >= 100000:  # Lakhs
+            lakhs = amount // 100000
+            remainder = amount % 100000
+            result = convert_hundreds(lakhs) + ' lakh '
+            if remainder > 0:
+                result += self.amountToWords(remainder)
+            return result.strip()
+        elif amount >= 1000:  # Thousands
+            thousands = amount // 1000
+            remainder = amount % 1000
+            result = convert_hundreds(thousands) + ' thousand '
+            if remainder > 0:
+                result += convert_hundreds(remainder)
+            return result.strip()
+        else:
+            return convert_hundreds(amount)
     
     def load_customer_data(self):
         try:

@@ -1,0 +1,64 @@
+# -*- mode: python ; coding: utf-8 -*-
+
+block_cipher = None
+
+a = Analysis(
+    ['Main.py'],
+    pathex=[],
+    binaries=[],
+    datas=[
+        ('config.json', '.'),
+        ('Cone_names.txt', '.'),
+        ('customer_data.json', '.'),
+    ],
+    hiddenimports=['babel.numbers'],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    win_no_prefer_redirects=False,
+    win_private_assemblies=False,
+    cipher=block_cipher,
+    noarchive=False,
+)
+
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    [],
+    name='BillingSoftware',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=False,  # Set to False for GUI application
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+    icon=None  # You can add an icon file path here if you have one
+)
+
+app = BUNDLE(
+    exe,
+    name='BillingSoftware.app',
+    icon=None,
+    bundle_identifier='com.shrijayasakthi.billingsoftware',
+    info_plist={
+        'CFBundleName': 'Billing Software',
+        'CFBundleDisplayName': 'Shri Jayasakthi Billing Software',
+        'CFBundleGetInfoString': "Billing Software for Shri Jayasakthi Traders",
+        'CFBundleIdentifier': 'com.shrijayasakthi.billingsoftware',
+        'CFBundleVersion': '1.0.0',
+        'CFBundleShortVersionString': '1.0.0',
+        'NSHighResolutionCapable': 'True',
+    },
+)

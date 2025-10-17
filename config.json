@@ -1,0 +1,24 @@
+{
+  "tax_settings": {
+    "cgst_rate": 2.5,
+    "sgst_rate": 2.5,
+    "igst_rate": 5.0,
+    "tax_type": "intrastate"
+  },
+  "business_details": {
+    "name": "SHRI JAYASAKTHI TRADERS",
+    "address_line1": "NO.10, Selva Vinayagar Kovil Street",
+    "address_line2": "Kumarananthapuram, Tirupur-641602",
+    "phone": "9442341916",
+    "email": "shrijayasakthitraders@gmail.com",
+    "gstin": "33AYDPS3713R1ZZ",
+    "state": "Tamilnadu",
+    "state_code": "33",
+    "bank_name": "IOB, KNIT CITY BRANCH, TIRUPUR-641602",
+    "account_number": "133002000005795",
+    "ifsc": "IOBA0001330"
+  },
+  "product_settings": {
+    "default_hsn": "5508"
+  }
+}

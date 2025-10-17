@@ -1,0 +1,5 @@
+tkinter
+inflect==7.3.1
+tkcalendar==1.6.1
+babel==2.15.0
+pyinstaller==6.9.0

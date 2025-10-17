@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+bill/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# PyInstaller
+*.spec.bak
+*.manifest
+*.spec.log
+
+# Test files
+test_*.py
+test_invoice.html
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Application data (sensitive)
+invoice.html
+customer_data.json.backup
+
+# Package files
+BillingSoftware_Package/
+*.zip

@@ -48,4 +48,5 @@ customer_data.json.backup
 
 # Package files
 BillingSoftware_Package/
-*.zip
+# Don't ignore release zips
+!BillingSoftware_v*.zip
